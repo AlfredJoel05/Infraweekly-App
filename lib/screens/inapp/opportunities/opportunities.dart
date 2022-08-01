@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trid_travel/Utils/exit_alert.dart';
 import 'package:trid_travel/Utils/menu/side_menu.dart';
+import 'package:trid_travel/screens/inapp/opportunities/opportunity_builder.dart';
 
 class OpportunitiesPage extends StatefulWidget {
   const OpportunitiesPage({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _OpportunitiesPageState extends State<OpportunitiesPage> with TickerProvid
             onPressed: () => _scaffoldKey.currentState?.openDrawer(),
           ),
         ),
-        body: Container(alignment: Alignment.center, color: Colors.blue, child: const Text('Opportunities Page')),
+        body: opportunitiesBlocBuilder(),
       ),
     );
   }

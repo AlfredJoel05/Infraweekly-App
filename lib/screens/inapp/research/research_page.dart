@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trid_travel/Utils/exit_alert.dart';
+import 'package:trid_travel/screens/inapp/research/research_builder.dart';
 import '../../../Utils/menu/side_menu.dart';
 
 class ResearchPage extends StatefulWidget {
@@ -39,7 +40,7 @@ class _ResearchPageState extends State<ResearchPage> with TickerProviderStateMix
             onPressed: () => _scaffoldKey.currentState?.openDrawer(),
           ),
         ),
-        body: Container(alignment: Alignment.center, color: Colors.blue, child: const Text('Research Page')),
+        body: researchBlocBuilder(),
       ),
     );
   }
