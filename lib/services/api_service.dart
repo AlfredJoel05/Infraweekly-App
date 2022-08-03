@@ -38,8 +38,8 @@ class ApiService {
   }
 
   Future<http.Response> getPreviousWeekUpdates() async {
-    var startDate = '2022-07-20';
-    var endDate = '2022-07-31';
+    var endDate = getPreviousDate();
+    var startDate = getCurrentDate();
     try {
       final response = await http.get(
         Uri.parse(
@@ -143,13 +143,17 @@ class ApiService {
   }
 
   Future<http.Response> postFeedboack(data) async {
-    try { final response = await http.post(Uri.parse('http://192.168.0.115:9050/feedback'),
+    try {
+      final response = await http
+          .post(
+        Uri.parse('http://192.168.0.115:9050/feedback'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
         body: data,
-      ).timeout(const Duration(seconds: 10), onTimeout: () {
+      )
+          .timeout(const Duration(seconds: 10), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;

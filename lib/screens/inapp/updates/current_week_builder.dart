@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trid_travel/blocs/current_week_updates_bloc/updates_bloc.dart';
 import 'dart:convert';
@@ -18,7 +16,6 @@ BlocBuilder<GetUpdatesBloc, UpdatesBlocState> currentWeekBlocBuilder() {
         return const ShimmerLoader();
       } else if (state is LoadedUpdatesState) {
         final currentWeekDataList = state.currentWeekData;
-        print(currentWeekDataList);
         return currentWeekBuilder(context, currentWeekDataList);
         // return thisWeekBuilder(currenWeekDataList);
       } else if (state is ErrorUpdatesState) {
@@ -46,7 +43,6 @@ Widget currentWeekBuilder(
       child: RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.anywhere,
     onRefresh: () async {
-      print('Called Refresh event from Data Page');
       context.read<GetUpdatesBloc>().add(GetUpdatesBlocRefreshEvent());
     },
     child: ListView.builder(
@@ -65,7 +61,6 @@ Widget currentWeekWarning(BuildContext context) {
   return RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.onEdge,
     onRefresh: () async {
-      print('Called Refresh event from Current Week Warning Page');
       context.read<GetUpdatesBloc>().add(GetUpdatesBlocRefreshEvent());
     },
     color: Colors.amber,
