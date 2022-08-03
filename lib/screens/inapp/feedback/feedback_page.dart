@@ -1,12 +1,15 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trid_travel/Utils/exit_alert.dart';
 import 'package:trid_travel/Utils/menu/side_menu.dart';
+import 'package:trid_travel/services/api_service.dart';
+import 'package:trid_travel/utils/alert_dialog.dart';
 
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({Key? key}) : super(key: key);
-
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
 }
@@ -15,16 +18,25 @@ class _FeedbackPageState extends State<FeedbackPage>
     with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _feedbackController = TextEditingController();
-
+  final apiService = ApiService();
+  int? finalRating;
   @override
   void dispose() {
     _feedbackController.dispose();
     super.dispose();
   }
 
-  Future submitFeedback(feedback) async {
-    // ignore: avoid_print
-    print('Feedback: $feedback');
+  Future submitFeedback(feedback, rating) async {
+    // var data = jsonEncode(<String, String>{"comments": feedback, "rating": rating});
+    var data = json.encode({"comments": feedback, "rating": rating});
+    var response = await apiService.postFeedboack(data);
+    var message = json.decode(response.body);
+    if (!mounted) return;
+    if (response.statusCode == 201) {
+      showAlertDialogBox(context, message['body'], true);
+    } else {
+      showAlertDialogBox(context, message['body'], false);
+    }
   }
 
   @override
@@ -87,7 +99,22 @@ class _FeedbackPageState extends State<FeedbackPage>
                   style: const TextStyle(
                       fontSize: 23, fontWeight: FontWeight.w600),
                 ),
-                const SizedBox( height: 14),
+                RatingBar.builder(
+                  initialRating: 4,
+                  minRating: 1,
+                  direction: Axis.horizontal,
+                  allowHalfRating: false,
+                  itemCount: 5,
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  onRatingUpdate: (rating) {
+                    finalRating = rating.toInt();
+                  },
+                ),
+                const SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -95,7 +122,9 @@ class _FeedbackPageState extends State<FeedbackPage>
                       width: 150,
                       height: 45,
                       child: ElevatedButton(
-                        onPressed: () { submitFeedback(_feedbackController.text.trim()); },
+                        onPressed: () {
+                          submitFeedback(_feedbackController.text, finalRating);
+                        },
                         child: const Text('Submit',
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold)),
@@ -105,11 +134,13 @@ class _FeedbackPageState extends State<FeedbackPage>
                       width: 150,
                       height: 45,
                       child: ElevatedButton(
-                        onPressed: () { submitFeedback(_feedbackController.text); },
+                        onPressed: () {
+                          _feedbackController.clear();
+                        },
                         style: ElevatedButton.styleFrom(primary: Colors.grey),
                         child: const Text('Cancel',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
                     ),
                   ],

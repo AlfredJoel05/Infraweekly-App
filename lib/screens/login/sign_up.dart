@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -29,8 +28,6 @@ class _SignUpState extends State<SignUp> {
 
   // Function Sign in
   Future sendSignUp(firstName, lastName, mobile, email, password) async {
-    print(
-        "First Name: $firstName | Last Name: $lastName | Mobile: $mobile | Email: $email | Password: $password");
     var data = jsonEncode(<String, String>{
       'firstName': firstName,
       'lastName': lastName,
@@ -41,8 +38,6 @@ class _SignUpState extends State<SignUp> {
 
     var res = await signUp(data);
     var response = json.decode(res.body);
-    print(
-        'Response: ${response['body']} | Status Code = ${response['status']}');
     setState(() {
       _isLogging = !_isLogging;
     });

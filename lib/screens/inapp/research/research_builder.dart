@@ -1,5 +1,4 @@
 
-// ignore_for_file: avoid_print
 
 import 'dart:convert';
 
@@ -44,7 +43,6 @@ Widget researchBuilder(
       child: RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.anywhere,
     onRefresh: () async {
-      print('Called Refresh event from Data Page');
       context.read<ResearchBloc>().add(ResearchRefreshEvent());
     },
     child: ListView.builder(
@@ -63,7 +61,6 @@ Widget researchWarning(BuildContext context) {
   return RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.onEdge,
     onRefresh: () async {
-      print('Called Refresh event from Current Week Warning Page');
       context.read<ResearchBloc>().add(ResearchRefreshEvent());
     },
     color: Colors.amber,

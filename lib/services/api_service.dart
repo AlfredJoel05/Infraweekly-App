@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:http/http.dart' as http;
 import 'package:trid_travel/constants/constants_values.dart';
 
@@ -35,7 +33,6 @@ class ApiService {
       });
       return response;
     } catch (e) {
-      print('Error $e');
       return http.Response('error', 400);
     }
   }
@@ -56,7 +53,6 @@ class ApiService {
       });
       return response;
     } catch (e) {
-      print('Error $e');
       return http.Response('error', 400);
     }
   }
@@ -74,7 +70,6 @@ class ApiService {
       });
       return response;
     } catch (e) {
-      print('Error $e');
       return http.Response('error', 400);
     }
   }
@@ -92,7 +87,6 @@ class ApiService {
       });
       return response;
     } catch (e) {
-      print('Error $e');
       return http.Response('error', 400);
     }
   }
@@ -110,7 +104,6 @@ class ApiService {
       });
       return response;
     } catch (e) {
-      print('Error $e');
       return http.Response('error', 400);
     }
   }
@@ -128,7 +121,6 @@ class ApiService {
       });
       return response;
     } catch (e) {
-      print('Error $e');
       return http.Response('error', 400);
     }
   }
@@ -146,28 +138,22 @@ class ApiService {
       });
       return response;
     } catch (e) {
-      print('Error $e');
       return http.Response('error', 400);
     }
   }
 
   Future<http.Response> postFeedboack(data) async {
-    try {
-      final response = await http
-          .post(
-        Uri.parse('http://192.168.0.115:9050/news/3'),
+    try { final response = await http.post(Uri.parse('http://192.168.0.115:9050/feedback'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
         body: data,
-      )
-          .timeout(const Duration(seconds: 5), onTimeout: () {
+      ).timeout(const Duration(seconds: 10), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
     } catch (e) {
-      print('Error $e');
       return http.Response('error', 400);
     }
   }

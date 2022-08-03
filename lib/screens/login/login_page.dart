@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, avoid_print
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -35,15 +33,13 @@ class _LoginPageState extends State<LoginPage> {
 
   // Function Sign in
   Future signIn(email, password) async {
-    // print("Email: $email | Password: $password");
     var data = jsonEncode(<String, String>{
-      'email': 'john@doe.com', //? Replace with email and password
-      'password': 'John!1',
+      'email': email, 
+      'password': password,
     });
 
     var res = await logIn(data);
     var response = json.decode(res.body);
-    print('Response: ${response['body']} | Code = ${response['status']}');
 
     setState(() {
       _isLogging = !_isLogging;
@@ -53,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
       setIsLoggedIn(true);
       if (!mounted) return;
       showAlertDialogBox(context, 'Login Successful', true);
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(const Duration(seconds: 1), () {
         Navigator.of(context).pop();
 
         _emailController.clear();
@@ -89,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Scaffold(
           body: Center(
             child: SingleChildScrollView(
-              padding: EdgeInsets.all(14.0),
+              padding: const EdgeInsets.all(14.0),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -137,10 +133,10 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                           labelText: "Password",
                           hintText: 'Max:8 chars, symbols and numbers',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          border: const OutlineInputBorder(
+                            borderRadius:  BorderRadius.all(Radius.circular(50)),
                           ),
-                          prefixIcon: Icon(Icons.lock),
+                          prefixIcon: const Icon(Icons.lock),
                           suffixIcon: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -148,8 +144,8 @@ class _LoginPageState extends State<LoginPage> {
                               });
                             },
                             child: _isSelected
-                                ? Icon(Icons.visibility_off)
-                                : Icon(Icons.visibility, color: Colors.grey),
+                                ? const Icon(Icons.visibility_off)
+                                : const Icon(Icons.visibility, color: Colors.grey),
                           )),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -169,13 +165,13 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ForgotPassword(),
+                                  builder: (context) => const ForgotPassword(),
                                 ),
                               );
                             },
                             style:
                                 TextButton.styleFrom(primary: Colors.black54),
-                            child: Text(
+                            child: const Text(
                               'ForgotPassword?',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             )),
@@ -236,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                             style: TextButton.styleFrom(primary: Colors.amber),
-                            child: Text(
+                            child: const Text(
                               'Sign Up',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ))

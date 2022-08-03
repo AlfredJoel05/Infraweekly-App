@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -42,7 +41,6 @@ Widget workshopNewsBuilder(
       child: RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.anywhere,
     onRefresh: () async {
-      print('Called Refresh event from Data Page');
       context.read<WorkshopNewsBloc>().add(WorkshopNewsRefreshEvent());
     },
     child: ListView.builder(
@@ -61,7 +59,6 @@ Widget workshopNewsWarning(BuildContext context) {
   return RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.onEdge,
     onRefresh: () async {
-      print('Called Refresh event from Current Week Warning Page');
       context.read<WorkshopNewsBloc>().add(WorkshopNewsRefreshEvent());
     },
     color: Colors.amber,

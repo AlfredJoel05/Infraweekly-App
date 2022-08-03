@@ -1,6 +1,4 @@
 
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -44,7 +42,6 @@ Widget opportunityBuilder(
       child: RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.anywhere,
     onRefresh: () async {
-      print('Called Refresh event from Data Page');
       context.read<OpportunitiesBloc>().add(OpportunitiesRefreshEvent());
     },
     child: ListView.builder(
@@ -63,7 +60,6 @@ Widget opportunitiesWarning(BuildContext context) {
   return RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.onEdge,
     onRefresh: () async {
-      print('Called Refresh event from Current Week Warning Page');
       context.read<OpportunitiesBloc>().add(OpportunitiesRefreshEvent());
     },
     color: Colors.amber,

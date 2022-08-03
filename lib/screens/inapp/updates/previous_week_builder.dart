@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -42,7 +40,6 @@ Widget previousWeekBuilder(
       child: RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.anywhere,
     onRefresh: () async {
-      print('Called Refresh event from Data Page');
       context.read<GetPreviousWeekBloc>().add(GetPreviousBlocRefreshEvent());
     },
     child: ListView.builder(
@@ -61,7 +58,6 @@ Widget previousWeekWarning(BuildContext context) {
   return RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.onEdge,
     onRefresh: () async {
-      print('Called Refresh event from Current Week Warning Page');
       context.read<GetPreviousWeekBloc>().add(GetPreviousBlocRefreshEvent());
     },
     color: Colors.amber,

@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trid_travel/screens/inapp/in_app_page.dart';
@@ -20,7 +19,7 @@ class OnboardPage2 extends StatelessWidget {
         ),
         // ignore: sized_box_for_whitespace
         Container(
-          alignment: Alignment(0, 5),
+          alignment: const Alignment(0, 5),
           child: Image.asset(
             'images/ob4.png',
           ),
@@ -68,14 +67,14 @@ class OnboardPage2 extends StatelessWidget {
                       // routeSettings: ,
                       constraints: BoxConstraints(
                       maxHeight: MediaQuery.of(context).size.height * 0.35),
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
                       context: context,
                       builder: (context) => Center(
                       child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 20, horizontal: 20),
                           child: Text(
                             'For News and Alerts',
@@ -98,7 +97,7 @@ class OnboardPage2 extends StatelessWidget {
                                 color: Colors.black87),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         Row(
@@ -109,7 +108,7 @@ class OnboardPage2 extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () {
                                 Navigator.pop(context);
-                                Navigator.push( context, MaterialPageRoute( builder: ((context) => InAppPage())));
+                                Navigator.push( context, MaterialPageRoute( builder: ((context) => const InAppPage())));
                               },
                               style: ElevatedButton.styleFrom(
                                   minimumSize: const Size(170, 55),

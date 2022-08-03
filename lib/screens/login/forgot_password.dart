@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -34,7 +32,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
     var res = await check(data);
     var response = json.decode(res.body);
-    print('Status Code = ${response['status']}');
     setState(() {_isLogging = !_isLogging;});
     if (response['status'] == 200) {
       if (!mounted) return;
