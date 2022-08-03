@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 import 'dart:convert';
 
 import 'package:trid_travel/models/news_model/projects_news_model.dart';
@@ -40,7 +39,6 @@ class ApiRepository {
       data = jsonEncode(data["body"]);
       return currentWeekUpdateModelFromJson(data);
     } else {
-      print('Previous Api Rpository: Error in Request');
       return [];
     }
     // return data.map((singleData) => CurrentWeekUpdateModel.fromJson(data));
@@ -54,7 +52,6 @@ class ApiRepository {
       data = jsonEncode(data["body"]);
       return previousWeekModelFromJson(data);
     } else {
-      print('Previous Api Rpository: Error in Request');
       return [];
     }
     // return data.map((singleData) => CurrentWeekUpdateModel.fromJson(data));
@@ -68,7 +65,6 @@ class ApiRepository {
       data = jsonEncode(data["body"]);
       return seminarNewsModelFromJson(data);
     } else {
-      print('Previous Api Rpository: Error in Request');
       return [];
     }
   }
@@ -81,7 +77,6 @@ class ApiRepository {
       data = jsonEncode(data["body"]);
       return workshopNewsModelFromJson(data);
     } else {
-      print('Previous Api Rpository: Error in Request');
       return [];
     }
   }
@@ -94,7 +89,6 @@ class ApiRepository {
       data = jsonEncode(data["body"]);
       return projectsNewsModelFromJson(data);
     } else {
-      print('Previous Api Rpository: Error in Request');
       return [];
     }
   }
@@ -107,7 +101,6 @@ class ApiRepository {
       data = jsonEncode(data["body"]);
       return researchModelFromJson(data);
     } else {
-      print('Previous Api Rpository: Error in Request');
       return [];
     }
   }
@@ -120,7 +113,6 @@ class ApiRepository {
       data = jsonEncode(data["body"]);
       return opprotunitiesModelFromJson(data);
     } else {
-      print('Previous Api Rpository: Error in Request');
       return [];
     }
   }

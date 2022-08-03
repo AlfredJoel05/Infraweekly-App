@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:trid_travel/models/updates_model/previous_week_model.dart';
@@ -17,7 +17,6 @@ class GetPreviousWeekBloc
   }
    void _onLoadUpdates(GetPreviousWeekEvent event, Emitter<GetPreviousWeekState> emit) async {
     final List<PreviousWeekModel>? dataList = await apiRepository.getPreviousWeekData();
-    print(dataList);
     if (dataList!.isEmpty) {
       emit(PreviousWeekErrorState());
     } else {
@@ -28,7 +27,6 @@ class GetPreviousWeekBloc
   void _onRefreshLoadUpdates(GetPreviousBlocRefreshEvent event, Emitter<GetPreviousWeekState> emit) async {
     emit(PreviousWeekLoadingState());
     final List<PreviousWeekModel>? dataList = await apiRepository.getPreviousWeekData();
-    print(dataList);
     if (dataList!.isEmpty) {
       emit(PreviousWeekErrorState());
     } else {

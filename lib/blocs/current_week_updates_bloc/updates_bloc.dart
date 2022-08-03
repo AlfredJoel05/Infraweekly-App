@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -19,7 +19,6 @@ class GetUpdatesBloc extends Bloc<GetUpdatesBlocEvent, UpdatesBlocState> {
       GetUpdatesBlocEvent event, Emitter<UpdatesBlocState> emit) async {
     final List<CurrentWeekUpdateModel>? dataList =
         await apiRepository.getCurrentWeekData();
-    print(dataList);
     if (dataList!.isEmpty) {
       emit(ErrorUpdatesState());
     } else {
@@ -29,9 +28,7 @@ class GetUpdatesBloc extends Bloc<GetUpdatesBlocEvent, UpdatesBlocState> {
 
   void _onRefreshLoadUpdates(GetUpdatesBlocRefreshEvent event, Emitter<UpdatesBlocState> emit) async {
     emit(LoadingUpdatesState());
-    print('State inside onRefresh: $state');
     final List<CurrentWeekUpdateModel>? dataList = await apiRepository.getCurrentWeekData();
-    print(dataList);
     if (dataList!.isEmpty) {
       emit(ErrorUpdatesState());
     } else {
