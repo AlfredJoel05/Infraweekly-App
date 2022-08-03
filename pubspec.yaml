@@ -13,6 +13,7 @@ dependencies:
     flutter:
         sdk: flutter
     flutter_bloc: ^8.0.1
+    
     google_fonts: ^3.0.1
     http: ^0.13.4
     provider: ^6.0.3
@@ -22,8 +23,22 @@ dependencies:
 
 dev_dependencies:
     flutter_lints: ^2.0.0
+    flutter_native_splash: ^2.2.7
+    flutter_launcher_icons: ^0.9.3
     flutter_test:
         sdk: flutter
+
+flutter_native_splash:
+    color: "#1b1b1b"
+    image: images/splash.png
+
+flutter_icons:
+  ios: true
+  android: true
+  image_path: "images/icon.png"
+  adaptive_icon_background: "#1b1b1b"
+  adaptive_icon_foreground: "images/icon.png"
+
 
 flutter:
     uses-material-design: true
