@@ -28,6 +28,7 @@ String getPreviousDate() {
   String formatted = formatter.format(prevMonth);
   return formatted;
 }
+
 String getCurrentDate() {
   var currDate = DateTime(date.year, date.month, date.day);
   String formatted = formatter.format(currDate);

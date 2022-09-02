@@ -7,7 +7,7 @@ import 'package:trid_travel/constants/constants_values.dart';
 // Sign Up - User Creation
 Future<http.Response> signUp(data) async {
   final response = await http.post(
-    Uri.parse('http://192.168.0.115:9050/user'),
+    Uri.parse('https://infraweekly.herokuapp.com/user'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -19,7 +19,7 @@ Future<http.Response> signUp(data) async {
 // Get User Details
 Future<http.Response> getUserDetails() async {
   final response = await http.get(
-    Uri.parse('http://192.168.0.115:9050/user'),
+    Uri.parse('https://infraweekly.herokuapp.com/user'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -30,7 +30,7 @@ Future<http.Response> getUserDetails() async {
 // Reset Password - Change Password
 Future<http.Response> resetPassword(data) async {
   final response = await http.put(
-    Uri.parse('http://192.168.0.115:9050/reset'),
+    Uri.parse('https://infraweekly.herokuapp.com/reset'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -42,7 +42,7 @@ Future<http.Response> resetPassword(data) async {
 // Login
 Future<http.Response> logIn(data) async {
   final response = await http.post(
-    Uri.parse('http://192.168.0.115:9050/login'),
+    Uri.parse('https://infraweekly.herokuapp.com/login'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -58,7 +58,7 @@ Future<http.Response> logIn(data) async {
 // Check User is Present in DB
 Future<http.Response> check(data) async {
   final response = await http.post(
-    Uri.parse('http://192.168.149.182:9050/check'),
+    Uri.parse('https://infraweekly.herokuapp.com/check'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': getJwt().toString(),
@@ -71,7 +71,7 @@ Future<http.Response> check(data) async {
 // Current Week Updates
 // Future<CurrentWeekUpdateModel> getCurrentWeekUpdates() async {
 //   final response = await http.get(
-//     Uri.parse('http://192.168.0.115:9050/currentweekupdates'),
+//     Uri.parse('https://infraweekly.herokuapp.com/currentweekupdates'),
 //     headers: <String, String>{
 //       'Content-Type': 'application/json; charset=UTF-8',
 //       'Authorization': jwtToken

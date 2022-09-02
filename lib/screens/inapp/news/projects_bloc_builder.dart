@@ -114,10 +114,10 @@ Widget cardBuilder(ProjectsNewsModel singleData) {
                 borderRadius: BorderRadius.circular(7),
                 color: Colors.grey,
               ),
-              child: Image.memory(
-                base64Decode(singleData.media),
-                fit: BoxFit.cover,
-              ),
+              // child: Image.memory(
+              //   base64Decode(singleData.media),
+              //   fit: BoxFit.cover,
+              // ),
             ),
             const SizedBox(width: 10),
             Expanded(

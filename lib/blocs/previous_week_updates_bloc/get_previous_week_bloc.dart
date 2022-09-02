@@ -15,8 +15,10 @@ class GetPreviousWeekBloc
     on<GetPreviousWeekEvent>(_onLoadUpdates);
     on<GetPreviousBlocRefreshEvent>(_onRefreshLoadUpdates);
   }
-   void _onLoadUpdates(GetPreviousWeekEvent event, Emitter<GetPreviousWeekState> emit) async {
-    final List<PreviousWeekModel>? dataList = await apiRepository.getPreviousWeekData();
+  void _onLoadUpdates(
+      GetPreviousWeekEvent event, Emitter<GetPreviousWeekState> emit) async {
+    final List<PreviousWeekModel>? dataList =
+        await apiRepository.getPreviousWeekData();
     if (dataList!.isEmpty) {
       emit(PreviousWeekErrorState());
     } else {
@@ -24,16 +26,15 @@ class GetPreviousWeekBloc
     }
   }
 
-  void _onRefreshLoadUpdates(GetPreviousBlocRefreshEvent event, Emitter<GetPreviousWeekState> emit) async {
+  void _onRefreshLoadUpdates(GetPreviousBlocRefreshEvent event,
+      Emitter<GetPreviousWeekState> emit) async {
     emit(PreviousWeekLoadingState());
-    final List<PreviousWeekModel>? dataList = await apiRepository.getPreviousWeekData();
+    final List<PreviousWeekModel>? dataList =
+        await apiRepository.getPreviousWeekData();
     if (dataList!.isEmpty) {
       emit(PreviousWeekErrorState());
     } else {
       emit(PreviousWeekLoadedState(previousWeekData: dataList));
     }
   }
-
 }
-
-

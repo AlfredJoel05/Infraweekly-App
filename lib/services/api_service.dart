@@ -6,7 +6,7 @@ class ApiService {
   Future<http.Response> getUserDetails() async {
     if (getIsLoggedIn()) {
       final response = await http.get(
-        Uri.parse('http://192.168.0.115:9050/user'),
+        Uri.parse('https://infraweekly.herokuapp.com/user'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
@@ -23,12 +23,12 @@ class ApiService {
   Future<http.Response> getCurrentWeekUpdates() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.0.115:9050/currentweekupdates'),
+        Uri.parse('https://infraweekly.herokuapp.com/currentweekupdates'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 5), onTimeout: () {
+      ).timeout(const Duration(seconds: 15), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -38,17 +38,16 @@ class ApiService {
   }
 
   Future<http.Response> getPreviousWeekUpdates() async {
-    var endDate = getPreviousDate();
-    var startDate = getCurrentDate();
+    var startDate = getPreviousDate().toString();
+    var endDate = getCurrentDate().toString();
     try {
       final response = await http.get(
-        Uri.parse(
-            'http://192.168.0.115:9050/lastweekupdates?endDate=$endDate&startDate=$startDate'),
+        Uri.parse('https://infraweekly.herokuapp.com/lastweekupdates?endDate=$endDate&startDate=$startDate'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 5), onTimeout: () {
+      ).timeout(const Duration(seconds: 15), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -60,7 +59,7 @@ class ApiService {
   Future<http.Response> getSeminarNews() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.0.115:9050/news/1'),
+        Uri.parse('https://infraweekly.herokuapp.com/news/1'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
@@ -77,7 +76,7 @@ class ApiService {
   Future<http.Response> getWorkshopNews() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.0.115:9050/news/2'),
+        Uri.parse('https://infraweekly.herokuapp.com/news/2'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
@@ -94,7 +93,7 @@ class ApiService {
   Future<http.Response> getProjectsNews() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.0.115:9050/news/3'),
+        Uri.parse('https://infraweekly.herokuapp.com/news/3'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
@@ -111,7 +110,7 @@ class ApiService {
   Future<http.Response> getResearch() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.0.115:9050/news/4'),
+        Uri.parse('https://infraweekly.herokuapp.com/news/4'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
@@ -128,7 +127,7 @@ class ApiService {
   Future<http.Response> getOpportunity() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.0.115:9050/news/5'),
+        Uri.parse('https://infraweekly.herokuapp.com/news/5'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
@@ -146,7 +145,7 @@ class ApiService {
     try {
       final response = await http
           .post(
-        Uri.parse('http://192.168.0.115:9050/feedback'),
+        Uri.parse('https://infraweekly.herokuapp.com/feedback'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
