@@ -24,6 +24,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   final _mobileController = TextEditingController();
   // Function Sign in
 
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _mobileController.dispose();
+    super.dispose();
+  }
+
   Future forgotPassword(email, mobile) async {
     var data = jsonEncode(<String, String>{
       'email': email,
@@ -32,7 +39,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
     var res = await check(data);
     var response = json.decode(res.body);
-    setState(() {_isLogging = !_isLogging;});
+    setState(() {
+      _isLogging = !_isLogging;
+    });
     if (response['status'] == 200) {
       if (!mounted) return;
       Navigator.pushAndRemoveUntil<dynamic>(
@@ -41,10 +50,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             builder: (context) => const ResetPassword(),
             maintainState: true,
           ),
-        (route) => false);
+          (route) => false);
     } else {
       if (!mounted) return;
-      showAlertDialogBox(context, 'Invalid Details\nor\nUser not found!', false);
+      showAlertDialogBox(
+          context, 'Invalid Details\nor\nUser not found!', false);
     }
   }
 
@@ -139,9 +149,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   child: MaterialButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        forgotPassword(_emailController.text,
-                            _mobileController.text);
-                        setState(() {_isLogging = !_isLogging;});
+                        forgotPassword(
+                            _emailController.text, _mobileController.text);
+                        setState(() {
+                          _isLogging = !_isLogging;
+                        });
                       }
                     },
                     child: _isLogging

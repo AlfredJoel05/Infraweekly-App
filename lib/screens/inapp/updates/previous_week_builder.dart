@@ -7,7 +7,8 @@ import 'package:trid_travel/models/updates_model/previous_week_model.dart';
 import 'package:trid_travel/utils/scroll_behaviour.dart';
 import 'package:trid_travel/utils/shimmer.dart';
 
-BlocBuilder<GetPreviousWeekBloc, GetPreviousWeekState> previousWeekBlocBuilder() {
+BlocBuilder<GetPreviousWeekBloc, GetPreviousWeekState>
+    previousWeekBlocBuilder() {
   return BlocBuilder<GetPreviousWeekBloc, GetPreviousWeekState>(
     builder: ((context, state) {
       if (state is PreviousWeekLoadingState) {
@@ -114,10 +115,15 @@ Widget cardBuilder(PreviousWeekModel singleData) {
                 borderRadius: BorderRadius.circular(7),
                 color: Colors.grey,
               ),
-              // child: Image.memory(
-              //   base64Decode(singleData.media),
-              //   fit: BoxFit.cover,
-              // ),
+              child: singleData.media.isEmpty
+                  ? Image.memory(
+                      base64Decode(singleData.media),
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset(
+                      'images/error1.png',
+                      fit: BoxFit.fill,
+                    ),
             ),
             const SizedBox(width: 10),
             Expanded(

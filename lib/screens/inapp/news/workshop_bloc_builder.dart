@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -115,10 +114,15 @@ Widget cardBuilder(WorkshopNewsModel singleData) {
                 borderRadius: BorderRadius.circular(7),
                 color: Colors.grey,
               ),
-              // child: Image.memory(
-              //   base64Decode(singleData.media),
-              //   fit: BoxFit.cover,
-              // ),
+              child: singleData.media.isEmpty
+                  ? Image.memory(
+                      base64Decode(singleData.media),
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset(
+                      'images/error1.png',
+                      fit: BoxFit.fill,
+                    ),
             ),
             const SizedBox(width: 10),
             Expanded(
