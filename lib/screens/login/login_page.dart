@@ -104,6 +104,9 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: const InputDecoration(
                         labelText: "Email",
                         hintText: 'Eg: email@gmail.com',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                         ),
@@ -129,7 +132,6 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: _isSelected,
                     decoration: InputDecoration(
                         labelText: "Password",
-                        hintText: 'Max:8 chars, symbols and numbers',
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                         ),
@@ -186,14 +188,13 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.amber),
                     child: MaterialButton(
                       onPressed: _isPressed
-                          ? null :
-                          () {
+                          ? null
+                          : () {
                               if (_formKey.currentState!.validate()) {
                                 signIn(_emailController.text,
                                     _passwordController.text);
                                 setState(() {
                                   _isPressed = !_isPressed;
-                                  print(_isPressed);
                                   _isLogging = !_isLogging;
                                 });
                               }

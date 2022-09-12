@@ -156,6 +156,9 @@ class _SignUpState extends State<SignUp> {
                     decoration: const InputDecoration(
                         labelText: "Mobile",
                         hintText: 'Maximum of 10 digits',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                         ),
@@ -181,6 +184,9 @@ class _SignUpState extends State<SignUp> {
                     decoration: const InputDecoration(
                         labelText: "Email",
                         hintText: 'Eg: email@gmail.com',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                         ),
@@ -206,9 +212,9 @@ class _SignUpState extends State<SignUp> {
                     obscureText: _isSelected,
                     decoration: InputDecoration(
                         labelText: "Password",
-                        hintText: 'Max:10 chars, symbols and numbers',
+                        hintText: '5-15 Characters',
                         hintStyle: const TextStyle(
-                          fontSize: 11,
+                          color: Colors.grey,
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(50)),

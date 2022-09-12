@@ -88,6 +88,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                       hintText: 'Enter your registered email',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
                       labelText: "Email",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
@@ -113,7 +116,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                   keyboardType: TextInputType.visiblePassword,
                   decoration: const InputDecoration(
                       labelText: "Password",
-                      hintText: 'Max:8 chars, symbols and numbers',
+                      hintText: '5-15 Characters',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),
@@ -138,7 +144,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                   keyboardType: TextInputType.visiblePassword,
                   decoration: const InputDecoration(
                       labelText: "Confirm Password",
-                      hintText: 'Max:8 chars, symbols and numbers',
+                      hintText: 'Re-Enter your password',
+                      hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),

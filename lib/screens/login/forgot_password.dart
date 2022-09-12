@@ -88,6 +88,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                       hintText: 'Enter your registered email',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
                       labelText: "Email",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
@@ -113,6 +116,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                       hintText: 'Enter your registered mobile',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
                       labelText: "Mobile",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
