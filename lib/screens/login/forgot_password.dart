@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -17,6 +19,7 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   bool _isLogging = false;
+  bool _isPressed = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   // text controllers
@@ -41,6 +44,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     var response = json.decode(res.body);
     setState(() {
       _isLogging = !_isLogging;
+      _isPressed = !_isPressed;
     });
     if (response['status'] == 200) {
       if (!mounted) return;
@@ -147,15 +151,19 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       borderRadius: BorderRadius.circular(100),
                       color: Colors.amber),
                   child: MaterialButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        forgotPassword(
-                            _emailController.text, _mobileController.text);
-                        setState(() {
-                          _isLogging = !_isLogging;
-                        });
-                      }
-                    },
+                    onPressed: _isPressed
+                        ? null
+                        : () {
+                            print('Skipped');
+                            if (_formKey.currentState!.validate()) {
+                              forgotPassword(_emailController.text,
+                                  _mobileController.text);
+                              setState(() {
+                                _isLogging = !_isLogging;
+                                _isPressed = !_isPressed;
+                              });
+                            }
+                          },
                     child: _isLogging
                         ? const PleaseWait()
                         : Text(

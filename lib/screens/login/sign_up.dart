@@ -18,6 +18,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   bool _isSelected = true;
   bool _isLogging = false;
+  bool _isPressed = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   // text controllers
   final _emailController = TextEditingController();
@@ -40,10 +41,12 @@ class _SignUpState extends State<SignUp> {
     var response = json.decode(res.body);
     setState(() {
       _isLogging = !_isLogging;
+      _isPressed = !_isPressed;
     });
     if (res.statusCode == 201) {
       if (!mounted) return;
-      showAlertDialogBox(context, 'User Created Successfully \n Please Login', true);
+      showAlertDialogBox(
+          context, 'User Created Successfully \n Please Login', true);
       Future.delayed(const Duration(seconds: 1), () {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const LoginPage()));
@@ -239,20 +242,22 @@ class _SignUpState extends State<SignUp> {
                         borderRadius: BorderRadius.circular(100),
                         color: Colors.amber),
                     child: MaterialButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          setState(() {
-                            _isLogging = !_isLogging;
-                          });
-                          sendSignUp(
-                            _firstNameController.text,
-                            _lastNameController.text,
-                            _mobileController.text,
-                            _emailController.text,
-                            _passwordController.text
-                          );
-                        }
-                      },
+                      onPressed: _isPressed
+                          ? null
+                          : () {
+                              if (_formKey.currentState!.validate()) {
+                                setState(() {
+                                  _isLogging = !_isLogging;
+                                  _isPressed = !_isPressed;
+                                });
+                                sendSignUp(
+                                    _firstNameController.text,
+                                    _lastNameController.text,
+                                    _mobileController.text,
+                                    _emailController.text,
+                                    _passwordController.text);
+                              }
+                            },
                       child: _isLogging
                           ? const PleaseWait()
                           : Text(

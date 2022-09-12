@@ -73,7 +73,8 @@ class MyApp extends StatelessWidget {
       child: ChangeNotifierProvider(
         create: ((context) => SideMenuProvider()),
         child: MaterialApp(
-          theme: ThemeData().copyWith(
+          theme: ThemeData(
+          ).copyWith(
               colorScheme: ThemeData().colorScheme.copyWith(
                   primary: Colors.amber, secondary: Colors.amberAccent)),
           debugShowCheckedModeBanner: false,

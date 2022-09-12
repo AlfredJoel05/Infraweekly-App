@@ -17,7 +17,7 @@ class ResetPassword extends StatefulWidget {
 
 class _ResetPasswordState extends State<ResetPassword> {
   bool _isLogging = false;
-
+  bool _isPressed = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   // text controllers
   final _emailController = TextEditingController();
@@ -39,6 +39,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       if (!mounted) return;
       setState(() {
         _isLogging = !_isLogging;
+        _isPressed = !_isPressed;
       });
       showAlertDialogBox(context, 'Password Reset\nSuccessful', true);
       Future.delayed(const Duration(seconds: 1), () {
@@ -164,21 +165,25 @@ class _ResetPasswordState extends State<ResetPassword> {
                       borderRadius: BorderRadius.circular(100),
                       color: Colors.amber),
                   child: MaterialButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate() &&
-                          _confrimPassowrdController.text ==
-                              _passwordController.text) {
-                        forgotPassword(
-                            _emailController.text,
-                            _passwordController.text,
-                            _confrimPassowrdController.text);
-                        setState(() {
-                          _isLogging = !_isLogging;
-                        });
-                      } else {
-                        showAlertDialogBox(context, 'Enter all details', false);
-                      }
-                    },
+                    onPressed: _isPressed
+                        ? null
+                        : () {
+                            if (_formKey.currentState!.validate() &&
+                                _confrimPassowrdController.text ==
+                                    _passwordController.text) {
+                              forgotPassword(
+                                  _emailController.text,
+                                  _passwordController.text,
+                                  _confrimPassowrdController.text);
+                              setState(() {
+                                _isLogging = !_isLogging;
+                                _isPressed = !_isPressed;
+                              });
+                            } else {
+                              showAlertDialogBox(
+                                  context, 'Enter all details', false);
+                            }
+                          },
                     child: _isLogging
                         ? const PleaseWait()
                         : Row(

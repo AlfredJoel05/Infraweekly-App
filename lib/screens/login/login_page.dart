@@ -23,6 +23,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _isSelected = true;
   bool _isLogging = false;
+  bool _isPressed = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   // text controllers
   final _emailController = TextEditingController();
@@ -40,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
 
     setState(() {
       _isLogging = !_isLogging;
+      _isPressed = !_isPressed;
     });
 
     if (response['status'] == 200) {
@@ -183,15 +185,19 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(100),
                         color: Colors.amber),
                     child: MaterialButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          signIn(
-                              _emailController.text, _passwordController.text);
-                          setState(() {
-                            _isLogging = !_isLogging;
-                          });
-                        }
-                      },
+                      onPressed: _isPressed
+                          ? null :
+                          () {
+                              if (_formKey.currentState!.validate()) {
+                                signIn(_emailController.text,
+                                    _passwordController.text);
+                                setState(() {
+                                  _isPressed = !_isPressed;
+                                  print(_isPressed);
+                                  _isLogging = !_isLogging;
+                                });
+                              }
+                            },
                       child: _isLogging
                           ? const PleaseWait()
                           : Text(

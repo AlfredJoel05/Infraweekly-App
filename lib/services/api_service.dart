@@ -38,8 +38,8 @@ class ApiService {
   }
 
   Future<http.Response> getPreviousWeekUpdates() async {
-    var startDate = getPreviousDate().toString();
-    var endDate = getCurrentDate().toString();
+    var startDate = getPreviousDate();
+    var endDate = getCurrentDate();
     try {
       final response = await http.get(
         Uri.parse('https://infraweekly.herokuapp.com/lastweekupdates?endDate=$endDate&startDate=$startDate'),
