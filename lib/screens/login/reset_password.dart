@@ -87,7 +87,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
-                      hintText: 'Enter your registered email',
+                      hintText: 'Re-Enter your registered email',
                       hintStyle: TextStyle(
                         color: Colors.grey,
                       ),

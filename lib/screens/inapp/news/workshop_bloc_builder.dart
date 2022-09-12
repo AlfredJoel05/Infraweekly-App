@@ -108,22 +108,24 @@ Widget cardBuilder(WorkshopNewsModel singleData) {
           children: [
             //* Media - Image
             Container(
-              width: 135,
-              height: 135,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: Colors.grey,
-              ),
-              child: singleData.media.isEmpty
-                  ? Image.memory(
-                      base64Decode(singleData.media),
-                      fit: BoxFit.cover,
-                    )
-                  : Image.asset(
-                      'images/error1.png',
-                      fit: BoxFit.fill,
-                    ),
-            ),
+                width: 135,
+                height: 135,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: Colors.white,
+                ),
+                child: singleData.media.isEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Image.asset(
+                          'images/error1.png',
+                          // fit: BoxFit.fill,
+                        ),
+                      )
+                    : Image.memory(
+                        base64Decode(singleData.media),
+                        fit: BoxFit.cover,
+                      )),
             const SizedBox(width: 10),
             Expanded(
               child: Column(

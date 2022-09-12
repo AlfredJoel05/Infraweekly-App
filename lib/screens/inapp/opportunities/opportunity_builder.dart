@@ -113,17 +113,20 @@ Widget cardBuilder(OpportunitiesModel singleData) {
               height: 135,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: Colors.grey,
+                color: Colors.white,
               ),
               child: singleData.media.isEmpty
-                  ? Image.memory(
-                      base64Decode(singleData.media),
-                      fit: BoxFit.cover,
-                    )
-                  : Image.asset(
-                      'images/error1.png',
-                      fit: BoxFit.fill,
-                    ),
+                    ? Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Image.asset(
+                          'images/error1.png',
+                          // fit: BoxFit.fill,
+                        ),
+                      )
+                    : Image.memory(
+                        base64Decode(singleData.media),
+                        fit: BoxFit.cover,
+                      )
             ),
             const SizedBox(width: 10),
             Expanded(
