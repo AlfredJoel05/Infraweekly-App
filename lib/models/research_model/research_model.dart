@@ -18,6 +18,7 @@ class ResearchModel {
     required this.title,
     required this.description,
     required this.media,
+    required this.link,
   });
 
   String createdBy;
@@ -25,7 +26,7 @@ class ResearchModel {
   String title;
   String description;
   String media;
-
+  String link;
   factory ResearchModel.fromJson(Map<String, dynamic> json) =>
       ResearchModel(
         createdBy: json["createdBy"],
@@ -33,6 +34,7 @@ class ResearchModel {
         title: json["title"],
         description: json["description"],
         media: json["media"],
+        link: json["link"]
       );
 
   Map<String, dynamic> toJson() => {
@@ -41,5 +43,6 @@ class ResearchModel {
         "title": title,
         "description": description,
         "media": media,
+        "link": link,
       };
 }

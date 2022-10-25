@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:trid_travel/blocs/opportunities_bloc/opportunities_bloc.dart';
 import 'package:trid_travel/models/opportunitites_model/opportunities_model.dart';
 import 'package:trid_travel/utils/scroll_behaviour.dart';
 import 'package:trid_travel/utils/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 BlocBuilder<OpportunitiesBloc, OpportunitiesState> opportunitiesBlocBuilder() {
   return BlocBuilder<OpportunitiesBloc, OpportunitiesState>(
@@ -104,68 +106,99 @@ Widget cardBuilder(OpportunitiesModel singleData) {
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            //* Media - Image
-            Container(
-              width: 135,
-              height: 135,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: Colors.white,
-              ),
-              child: singleData.media.isEmpty
-                    ? Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Image.asset(
-                          'images/error1.png',
-                          // fit: BoxFit.fill,
-                        ),
-                      )
-                    : Image.memory(
-                        base64Decode(singleData.media),
-                        fit: BoxFit.cover,
-                      )
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  //* Title
-                  Text(
-                    singleData.title,
-                    style: GoogleFonts.lato(
-                        color: const Color.fromARGB(255, 32, 32, 32),
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600),
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              //* Media - Image
+              Container(
+                  width: 135,
+                  height: 135,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                    color: Colors.white,
                   ),
-                  const SizedBox(height: 10),
-                  //* Description
-                  Text(
-                    singleData.description,
-                    style: GoogleFonts.lato(
-                        color: const Color.fromARGB(221, 23, 23, 23),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                    child: Text(
-                      'on ${singleData.createdAt.join('/')} by ${singleData.createdBy.toUpperCase()}',
-                      textAlign: TextAlign.end,
-                      style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.normal),
+                  child: singleData.media.isEmpty
+                      ? Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Image.asset(
+                      'images/error1.png',
                     ),
+                  )
+                      : Image.memory(
+                    base64Decode(singleData.media),
+                    fit: BoxFit.cover,
+                  )),
+              const SizedBox(width: 10),
+              //* Title
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      singleData.title,
+                      style: GoogleFonts.lato(
+                          color: const Color.fromARGB(255, 32, 32, 32),
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+            const SizedBox(height: 20),
+            //* Description
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                singleData.description,
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.lato(
+                  color: const Color.fromARGB(221, 23, 23, 23),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+              const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RichText(
+                      text: TextSpan(children: [
+                        const TextSpan(
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 13,
+                                fontWeight: FontWeight.normal),
+                            text: "To learn more "),
+                        TextSpan(
+                            style: const TextStyle(color: Colors.amber),
+                            text: "Click here",
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                Uri url = Uri.parse(singleData.link);
+                                if (await canLaunchUrl(url)) {
+                                  launchUrl(url,
+                                      mode: LaunchMode.externalApplication);
+                                } else {
+                                  throw 'Could not launch $url';
+                                }
+                              }),
+                      ])),
+                  Text(
+                    'on ${singleData.createdAt.join('/')} by ${singleData.createdBy.toUpperCase()}',
+                    textAlign: TextAlign.end,
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.normal),
                   ),
                 ],
               ),
-            )
+            ),
           ],
-        ),
-      ),
+        )),
     ),
   );
 }

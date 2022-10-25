@@ -11,7 +11,7 @@ class ApiService {
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 5), onTimeout: () {
+      ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -28,7 +28,7 @@ class ApiService {
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 15), onTimeout: () {
+      ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -42,12 +42,13 @@ class ApiService {
     var endDate = getCurrentDate();
     try {
       final response = await http.get(
-        Uri.parse('https://infraweekly.herokuapp.com/lastweekupdates?endDate=$endDate&startDate=$startDate'),
+        Uri.parse(
+            'https://infraweekly.herokuapp.com/lastweekupdates?endDate=$endDate&startDate=$startDate'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 15), onTimeout: () {
+      ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -64,7 +65,7 @@ class ApiService {
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 5), onTimeout: () {
+      ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -81,7 +82,7 @@ class ApiService {
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 5), onTimeout: () {
+      ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -98,7 +99,7 @@ class ApiService {
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 5), onTimeout: () {
+      ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -115,7 +116,7 @@ class ApiService {
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 5), onTimeout: () {
+      ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -132,7 +133,7 @@ class ApiService {
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': getJwt().toString()
         },
-      ).timeout(const Duration(seconds: 5), onTimeout: () {
+      ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
@@ -152,7 +153,7 @@ class ApiService {
         },
         body: data,
       )
-          .timeout(const Duration(seconds: 10), onTimeout: () {
+          .timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
