@@ -78,7 +78,7 @@ Widget currentWeekWarning(BuildContext context) {
               height: 200,
               child: Image.asset(
                 'images/error.png',
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
             const Text(
@@ -108,100 +108,100 @@ Widget cardBuilder(CurrentWeekUpdateModel singleData) {
         borderRadius: BorderRadius.circular(7),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              //* Media - Image
-              Container(
-                  width: 135,
-                  height: 135,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    color: Colors.white,
-                  ),
-                  child: singleData.media.isEmpty
-                      ? Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Image.asset(
-                      'images/error1.png',
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                //* Media - Image
+                Container(
+                    width: 135,
+                    height: 135,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7),
+                      color: Colors.white,
                     ),
-                  )
-                      : Image.memory(
-                    base64Decode(singleData.media),
-                    fit: BoxFit.cover,
-                  )),
-              const SizedBox(width: 10),
-              //* Title
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                    child: singleData.media.isEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Image.asset(
+                              'images/error1.png',
+                            ),
+                          )
+                        : Image.memory(
+                            base64Decode(singleData.media),
+                            fit: BoxFit.contain,
+                          )),
+                const SizedBox(width: 10),
+                //* Title
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        singleData.title,
+                        style: GoogleFonts.lato(
+                            color: const Color.fromARGB(255, 32, 32, 32),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+              const SizedBox(height: 20),
+              //* Description
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  singleData.description,
+                  textAlign: TextAlign.justify,
+                  style: GoogleFonts.lato(
+                    color: const Color.fromARGB(221, 23, 23, 23),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    RichText(
+                        text: TextSpan(children: [
+                      const TextSpan(
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                              fontWeight: FontWeight.normal),
+                          text: "To learn more "),
+                      TextSpan(
+                          style: const TextStyle(color: Colors.amber),
+                          text: "Click here",
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () async {
+                              Uri url = Uri.parse(singleData.link);
+                              if (await canLaunchUrl(url)) {
+                                launchUrl(url,
+                                    mode: LaunchMode.externalApplication);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            }),
+                    ])),
                     Text(
-                      singleData.title,
-                      style: GoogleFonts.lato(
-                          color: const Color.fromARGB(255, 32, 32, 32),
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600),
+                      'on ${singleData.createdAt.join('/')} by ${singleData.createdBy.toUpperCase()}',
+                      textAlign: TextAlign.end,
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.normal),
                     ),
                   ],
                 ),
               ),
-            ]),
-            const SizedBox(height: 20),
-            //* Description
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                singleData.description,
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.lato(
-                  color: const Color.fromARGB(221, 23, 23, 23),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            Padding(
-              padding:
-              const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RichText(
-                      text: TextSpan(children: [
-                        const TextSpan(
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 13,
-                                fontWeight: FontWeight.normal),
-                            text: "To learn more "),
-                        TextSpan(
-                            style: const TextStyle(color: Colors.amber),
-                            text: "Click here",
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
-                                Uri url = Uri.parse(singleData.link);
-                                if (await canLaunchUrl(url)) {
-                                  launchUrl(url,
-                                      mode: LaunchMode.externalApplication);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              }),
-                      ])),
-                  Text(
-                    'on ${singleData.createdAt.join('/')} by ${singleData.createdBy.toUpperCase()}',
-                    textAlign: TextAlign.end,
-                    style: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.normal),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        )),
-      ),
+            ],
+          )),
+    ),
   );
 }

@@ -69,7 +69,7 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                 ),
                 Tab(
                   child: Text(
-                    'Worshops',
+                    'Workshops',
                     style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

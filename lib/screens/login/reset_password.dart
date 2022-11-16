@@ -17,7 +17,7 @@ class ResetPassword extends StatefulWidget {
 
 class _ResetPasswordState extends State<ResetPassword> {
   bool _isLogging = false;
-  bool _isPressed = true;
+  bool _isPressed = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   // text controllers
   final _emailController = TextEditingController();
@@ -26,6 +26,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   // Function Sign in
 
   Future forgotPassword(email, password, confirmPassword) async {
+
     var data = jsonEncode(<String, String>{
       'email': email,
       'password': password,
@@ -146,8 +147,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                       labelText: "Confirm Password",
                       hintText: 'Re-Enter your password',
                       hintStyle: TextStyle(
-                          color: Colors.grey,
-                        ),
+                        color: Colors.grey,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),

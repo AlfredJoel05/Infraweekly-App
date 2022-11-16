@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -160,7 +158,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     onPressed: _isPressed
                         ? null
                         : () {
-                            print('Skipped');
                             if (_formKey.currentState!.validate()) {
                               forgotPassword(_emailController.text,
                                   _mobileController.text);

@@ -74,7 +74,7 @@ Widget projectsNewsWarning(BuildContext context) {
               height: 200,
               child: Image.asset(
                 'images/error.png',
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
             const Text(
@@ -126,7 +126,7 @@ Widget cardBuilder(ProjectsNewsModel singleData) {
                           )
                         : Image.memory(
                             base64Decode(singleData.media),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                           )),
                 const SizedBox(width: 10),
                 //* Title
