@@ -169,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             );
                           },
-                          style: TextButton.styleFrom(primary: Colors.black54),
+                          style: TextButton.styleFrom(backgroundColor: Colors.black54),
                           child: const Text(
                             'ForgotPassword?',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             );
                           },
-                          style: TextButton.styleFrom(primary: Colors.amber),
+                          style: TextButton.styleFrom(backgroundColor: Colors.amber),
                           child: const Text(
                             'Sign Up',
                             style: TextStyle(fontWeight: FontWeight.bold),

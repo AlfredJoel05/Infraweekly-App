@@ -16,7 +16,7 @@ Future<bool> showExitPopup(context) async {
         ElevatedButton(
           onPressed: () => SystemNavigator.pop(), 
           style: ElevatedButton.styleFrom(
-            primary: Colors.grey.shade700
+              backgroundColor: Colors.grey.shade700
           ),
           child:const Text('Yes', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         ),

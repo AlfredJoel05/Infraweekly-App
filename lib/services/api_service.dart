@@ -26,7 +26,7 @@ class ApiService {
         Uri.parse('https://infraweekly.herokuapp.com/currentweekupdates'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': getJwt().toString()
+          // 'Authorization': getJwt().toString()
         },
       ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
@@ -46,7 +46,7 @@ class ApiService {
             'https://infraweekly.herokuapp.com/lastweekupdates?endDate=$endDate&startDate=$startDate'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': getJwt().toString()
+          // 'Authorization': getJwt().toString()
         },
       ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
@@ -63,7 +63,7 @@ class ApiService {
         Uri.parse('https://infraweekly.herokuapp.com/news/1'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': getJwt().toString()
+          // 'Authorization': getJwt().toString()
         },
       ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
@@ -80,7 +80,7 @@ class ApiService {
         Uri.parse('https://infraweekly.herokuapp.com/news/2'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': getJwt().toString()
+          // 'Authorization': getJwt().toString()
         },
       ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
@@ -97,7 +97,7 @@ class ApiService {
         Uri.parse('https://infraweekly.herokuapp.com/news/3'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': getJwt().toString()
+          // 'Authorization': getJwt().toString()
         },
       ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
@@ -114,7 +114,7 @@ class ApiService {
         Uri.parse('https://infraweekly.herokuapp.com/news/4'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': getJwt().toString()
+          // 'Authorization': getJwt().toString()
         },
       ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
@@ -131,7 +131,7 @@ class ApiService {
         Uri.parse('https://infraweekly.herokuapp.com/news/5'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': getJwt().toString()
+          // 'Authorization': getJwt().toString()
         },
       ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
@@ -152,8 +152,7 @@ class ApiService {
           'Authorization': getJwt().toString()
         },
         body: data,
-      )
-          .timeout(const Duration(seconds: 60), onTimeout: () {
+      ).timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;

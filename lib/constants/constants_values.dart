@@ -2,14 +2,6 @@ import 'package:intl/intl.dart';
 
 String jwtToken = 'Bearer ';
 
-void createJwt(raw) {
-  jwtToken += raw;
-}
-
-String getJwt() {
-  return jwtToken;
-}
-
 bool isLoggedIn = false;
 
 void setIsLoggedIn(bool status) {
@@ -18,6 +10,14 @@ void setIsLoggedIn(bool status) {
 
 bool getIsLoggedIn() {
   return isLoggedIn;
+}
+
+void createJwt(raw) {
+  jwtToken += raw;
+}
+
+String getJwt() {
+  return jwtToken;
 }
 
 DateTime date = DateTime.now();

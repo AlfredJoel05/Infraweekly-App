@@ -138,7 +138,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
                 // Description
                 Text(
-                  'If your email account is registered, You will be routed to a reset password page or you will be routed to Sign Up Page',
+                  'If your email account is registered, You will be routed to a Reset Password page or you will be routed to Sign Up page',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                       fontSize: 14,

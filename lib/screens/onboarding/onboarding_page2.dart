@@ -66,95 +66,95 @@ class OnboardPage2 extends StatelessWidget {
                   showModalBottomSheet(
                       // routeSettings: ,
                       constraints: BoxConstraints(
-                      maxHeight: MediaQuery.of(context).size.height * 0.35),
+                          maxHeight: MediaQuery.of(context).size.height * 0.35),
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
                       context: context,
                       builder: (context) => Center(
-                      child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 20),
-                          child: Text(
-                            'For News and Alerts',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black87),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30),
-                          child: Text(
-                            'Signup using your email for latest news and alerts on research',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black87),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
-                          children: [
-                            // Skip button
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 20, horizontal: 20),
+                                  child: Text(
+                                    'For News and Alerts',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black87),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30),
+                                  child: Text(
+                                    'Signup using your email for latest news and alerts on research',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black87),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    // Skip button
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
                                 Navigator.push( context, MaterialPageRoute( builder: ((context) => const InAppPage())));
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(170, 55),
-                                  primary: Colors.white,
-                                  onPrimary: Colors.amber),
-                              child: Text(
-                                "Skip",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black45),
-                              ),
-                            ),
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          minimumSize: const Size(170, 55),
+                                          foregroundColor: Colors.white,
+                                          backgroundColor: Colors.amber),
+                                      child: Text(
+                                        "Skip",
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black45),
+                                      ),
+                                    ),
 
-                            // Signup button
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const LoginPage()),
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(170, 55),
-                                  primary: Colors.amber),
-                              child: Text(
-                                "SIGN IN",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white),
-                              ),
+                                    // Signup button
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginPage()),
+                                        );
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          minimumSize: const Size(170, 55),
+                                          backgroundColor: Colors.amber),
+                                      child: Text(
+                                        "SIGN IN",
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                ));
-              }),
+                          ));
+                }),
                 style:
-                    ElevatedButton.styleFrom(primary: Colors.amber.shade600),
+                    ElevatedButton.styleFrom(backgroundColor: Colors.amber.shade600),
                 child: Text(
                   "Let's Go",
                   textAlign: TextAlign.center,

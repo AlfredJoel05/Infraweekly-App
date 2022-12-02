@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trid_travel/Utils/exit_alert.dart';
 import 'package:trid_travel/Utils/menu/side_menu.dart';
+import 'package:trid_travel/constants/constants_values.dart';
 import 'package:trid_travel/services/api_service.dart';
 import 'package:trid_travel/utils/alert_dialog.dart';
 
@@ -20,6 +21,7 @@ class _FeedbackPageState extends State<FeedbackPage>
   final _feedbackController = TextEditingController();
   final apiService = ApiService();
   int? finalRating;
+  bool _isLoading = false;
   @override
   void dispose() {
     _feedbackController.dispose();
@@ -33,6 +35,9 @@ class _FeedbackPageState extends State<FeedbackPage>
     var message = json.decode(response.body);
     if (!mounted) return;
     if (response.statusCode == 201) {
+      setState(() {
+        _isLoading = !_isLoading;
+      });
       showAlertDialogBox(context, message['body'], true);
     } else {
       showAlertDialogBox(context, message['body'], false);
@@ -122,12 +127,24 @@ class _FeedbackPageState extends State<FeedbackPage>
                       width: 150,
                       height: 45,
                       child: ElevatedButton(
-                        onPressed: () {
-                          submitFeedback(_feedbackController.text, finalRating);
-                        },
-                        child: const Text('Submit',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        onPressed: getIsLoggedIn()
+                            ? () {
+                                setState(() {
+                                  _isLoading = !_isLoading;
+                                });
+                                submitFeedback(_feedbackController.text, finalRating);
+                              }
+                            : () => showAlertDialogBox(context,
+                                'Login Required to submit Feedback', false),
+                        child: _isLoading
+                            ? const SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: CircularProgressIndicator.adaptive(
+                                    backgroundColor: Colors.white))
+                            : const Text('Submit',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
                       ),
                     ),
                     SizedBox(
@@ -137,7 +154,7 @@ class _FeedbackPageState extends State<FeedbackPage>
                         onPressed: () {
                           _feedbackController.clear();
                         },
-                        style: ElevatedButton.styleFrom(primary: Colors.grey),
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                         child: const Text('Cancel',
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),

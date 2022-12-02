@@ -27,6 +27,7 @@ class ResearchModel {
   String description;
   String media;
   String link;
+
   factory ResearchModel.fromJson(Map<String, dynamic> json) =>
       ResearchModel(
         createdBy: json["createdBy"],
