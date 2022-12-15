@@ -12,8 +12,8 @@ class OpportunitiesPage extends StatefulWidget {
   State<OpportunitiesPage> createState() => _OpportunitiesPageState();
 }
 
-class _OpportunitiesPageState extends State<OpportunitiesPage> with TickerProviderStateMixin{
-
+class _OpportunitiesPageState extends State<OpportunitiesPage>
+    with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -28,10 +28,12 @@ class _OpportunitiesPageState extends State<OpportunitiesPage> with TickerProvid
           systemOverlayStyle: SystemUiOverlayStyle.light,
           automaticallyImplyLeading: false,
           title: Text(
-            "Opportunities",
+            "Job Postings",
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
-                fontSize: 24, fontWeight: FontWeight.w600, color: Colors.black87),
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87),
           ),
           centerTitle: true,
           // ignore: prefer_const_literals_to_create_immutables

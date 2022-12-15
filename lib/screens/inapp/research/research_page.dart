@@ -12,8 +12,8 @@ class ResearchPage extends StatefulWidget {
   State<ResearchPage> createState() => _ResearchPageState();
 }
 
-class _ResearchPageState extends State<ResearchPage> with TickerProviderStateMixin{
-
+class _ResearchPageState extends State<ResearchPage>
+    with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -28,10 +28,12 @@ class _ResearchPageState extends State<ResearchPage> with TickerProviderStateMix
           systemOverlayStyle: SystemUiOverlayStyle.light,
           automaticallyImplyLeading: false,
           title: Text(
-            "Research",
+            "Reports & Publications",
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
-                fontSize: 24, fontWeight: FontWeight.w600, color: Colors.black87),
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87),
           ),
           centerTitle: true,
           // ignore: prefer_const_literals_to_create_immutables

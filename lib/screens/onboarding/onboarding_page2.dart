@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trid_travel/screens/inapp/in_app_page.dart';
 import '../login/login_page.dart';
 
-
 class OnboardPage2 extends StatelessWidget {
   const OnboardPage2({Key? key}) : super(key: key);
 
@@ -68,7 +67,8 @@ class OnboardPage2 extends StatelessWidget {
                       constraints: BoxConstraints(
                           maxHeight: MediaQuery.of(context).size.height * 0.35),
                       shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(25))),
                       context: context,
                       builder: (context) => Center(
                             child: Column(
@@ -108,7 +108,11 @@ class OnboardPage2 extends StatelessWidget {
                                     ElevatedButton(
                                       onPressed: () {
                                         Navigator.pop(context);
-                                Navigator.push( context, MaterialPageRoute( builder: ((context) => const InAppPage())));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    const InAppPage())));
                                       },
                                       style: ElevatedButton.styleFrom(
                                           minimumSize: const Size(170, 55),
@@ -120,7 +124,7 @@ class OnboardPage2 extends StatelessWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 20,
                                             fontWeight: FontWeight.w600,
-                                            color: Colors.black45),
+                                            color: Colors.white),
                                       ),
                                     ),
 
@@ -153,8 +157,8 @@ class OnboardPage2 extends StatelessWidget {
                             ),
                           ));
                 }),
-                style:
-                    ElevatedButton.styleFrom(backgroundColor: Colors.amber.shade600),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amber.shade600),
                 child: Text(
                   "Let's Go",
                   textAlign: TextAlign.center,

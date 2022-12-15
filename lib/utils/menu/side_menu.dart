@@ -8,7 +8,6 @@ import 'package:trid_travel/models/side_menu_model/side_menu_model.dart';
 import 'package:trid_travel/models/side_menu_model/user_details_model.dart';
 import 'package:trid_travel/utils/menu/side_menu_provider.dart';
 
-
 class SideMenu extends StatefulWidget {
   const SideMenu({Key? key}) : super(key: key);
 
@@ -53,11 +52,11 @@ class _SideMenuState extends State<SideMenu> {
                           iconData: Icons.newspaper,
                           item: SideMenuItems.newsMenu),
                       buildMenuItem(context,
-                          text: "Research",
+                          text: "Research & Publications",
                           iconData: Icons.star_border,
                           item: SideMenuItems.researchMenu),
                       buildMenuItem(context,
-                          text: "Opportunities",
+                          text: "Career Opportunities",
                           iconData: Icons.change_circle_outlined,
                           item: SideMenuItems.opportunitiesMenu),
                       buildMenuItem(context,
@@ -94,7 +93,10 @@ class _SideMenuState extends State<SideMenu> {
     );
   }
 
-  Widget buildMenuItem(BuildContext context,{required String text, required IconData iconData, required SideMenuItems item}) {
+  Widget buildMenuItem(BuildContext context,
+      {required String text,
+      required IconData iconData,
+      required SideMenuItems item}) {
     final provider = Provider.of<SideMenuProvider>(context);
     final currentItem = provider.sideMenuItem;
     final isSelected = item == currentItem;

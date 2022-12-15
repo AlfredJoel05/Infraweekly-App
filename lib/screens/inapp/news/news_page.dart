@@ -60,7 +60,8 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
               tabs: [
                 Tab(
                   child: Text(
-                    'Seminars',
+                    'Seminars & Webinars',
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -69,7 +70,8 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                 ),
                 Tab(
                   child: Text(
-                    'Workshops',
+                    'Recent Products',
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -78,7 +80,8 @@ class _NewsPageState extends State<NewsPage> with TickerProviderStateMixin {
                 ),
                 Tab(
                   child: Text(
-                    'Projects',
+                    'Recent Projects',
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

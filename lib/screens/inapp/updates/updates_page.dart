@@ -41,7 +41,7 @@ class _UpdatesPageState extends State<UpdatesPage> with TickerProviderStateMixin
             borderRadius: BorderRadius.circular(30),
           ),
           title: Text(
-            "Updates",
+            "Recent Updates",
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
                 fontSize: 24,
@@ -61,7 +61,7 @@ class _UpdatesPageState extends State<UpdatesPage> with TickerProviderStateMixin
               splashBorderRadius: BorderRadius.circular(30),
               tabs: [
                 Tab(
-                  child: Text('This week',style: GoogleFonts.poppins(
+                  child: Text('Latest week',style: GoogleFonts.poppins(
                         fontSize: 14,fontWeight: FontWeight.w500,color: Colors.black87),
                   ),
                 ),
