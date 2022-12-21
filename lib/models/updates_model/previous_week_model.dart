@@ -19,6 +19,7 @@ class PreviousWeekModel {
     required this.description,
     required this.media,
     required this.link,
+    required this.id,
   });
 
   String createdBy;
@@ -27,16 +28,18 @@ class PreviousWeekModel {
   String description;
   String media;
   String link;
+  String id;
 
   factory PreviousWeekModel.fromJson(Map<String, dynamic> json) =>
       PreviousWeekModel(
-        createdBy: json["createdBy"],
-        createdAt: List<int>.from(json["createdAt"].map((x) => x)),
-        title: json["title"],
-        description: json["description"],
-        media: json["media"],
-        link: json["link"]
-      );
+          createdBy: json["createdBy"],
+          createdAt: List<int>.from(json["createdAt"].map((x) => x)),
+          title: json["title"],
+          description: json["description"],
+          media: json["media"],
+          link: json["link"],
+          id: json["id"].toString()
+          );
 
   Map<String, dynamic> toJson() => {
         "createdBy": createdBy,
@@ -44,6 +47,7 @@ class PreviousWeekModel {
         "title": title,
         "description": description,
         "media": media,
-        "link": link
+        "link": link,
+        "id": id.toString()
       };
 }

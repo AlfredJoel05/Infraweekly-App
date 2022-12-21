@@ -134,8 +134,7 @@ class _FeedbackPageState extends State<FeedbackPage>
                                 });
                                 submitFeedback(_feedbackController.text, finalRating);
                               }
-                            : () => showAlertDialogBox(context,
-                                'Login Required to submit Feedback', false),
+                            : () => showAlertDialogBox(context,'Login Required to submit Feedback', false),
                         child: _isLoading
                             ? const SizedBox(
                                 height: 25,

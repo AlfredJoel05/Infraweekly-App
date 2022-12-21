@@ -152,12 +152,45 @@ class ApiService {
           'Authorization': getJwt().toString()
         },
         body: data,
-      ).timeout(const Duration(seconds: 60), onTimeout: () {
+      )
+          .timeout(const Duration(seconds: 60), onTimeout: () {
         throw http.Response('Connection Time Out', 408);
       });
       return response;
     } catch (e) {
       return http.Response('error', 400);
     }
+  }
+}
+
+Future<http.Response> deleteUpdate(data) async {
+  try {
+    final response = await http.delete(
+      Uri.parse('https://infraweekly.herokuapp.com/deleteupdate/$data'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    ).timeout(const Duration(seconds: 60), onTimeout: () {
+      throw http.Response('Connection Time Out', 408);
+    });
+    return response;
+  } catch (e) {
+    return http.Response('error', 400);
+  }
+}
+
+Future<http.Response> deleteNews(data) async {
+  try {
+    final response = await http.delete(
+      Uri.parse('https://infraweekly.herokuapp.com/deletenews/$data'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    ).timeout(const Duration(seconds: 60), onTimeout: () {
+      throw http.Response('Connection Time Out', 408);
+    });
+    return response;
+  } catch (e) {
+    return http.Response('error', 400);
   }
 }

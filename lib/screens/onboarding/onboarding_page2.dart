@@ -117,7 +117,8 @@ class OnboardPage2 extends StatelessWidget {
                                       style: ElevatedButton.styleFrom(
                                           minimumSize: const Size(170, 55),
                                           foregroundColor: Colors.white,
-                                          backgroundColor: Colors.amber),
+                                          backgroundColor:
+                                              Colors.grey.shade700),
                                       child: Text(
                                         "Skip",
                                         textAlign: TextAlign.center,

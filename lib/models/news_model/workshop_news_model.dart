@@ -19,6 +19,7 @@ class WorkshopNewsModel {
     required this.description,
     required this.media,
     required this.link,
+    required this.id,
   });
 
   String createdBy;
@@ -27,6 +28,7 @@ class WorkshopNewsModel {
   String description;
   String media;
   String link;
+  String id;
 
   factory WorkshopNewsModel.fromJson(Map<String, dynamic> json) =>
       WorkshopNewsModel(
@@ -35,7 +37,8 @@ class WorkshopNewsModel {
         title: json["title"],
         description: json["description"],
         media: json["media"],
-        link: json["link"]
+        link: json["link"],
+        id: json["id"].toString()
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,6 +47,7 @@ class WorkshopNewsModel {
         "title": title,
         "description": description,
         "media": media,
-        "link": link
+        "link": link,
+        "id": id,
       };
 }

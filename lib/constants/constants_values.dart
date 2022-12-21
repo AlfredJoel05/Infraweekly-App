@@ -4,6 +4,8 @@ String jwtToken = 'Bearer ';
 
 bool isLoggedIn = false;
 
+bool delete = false;
+
 void setIsLoggedIn(bool status) {
   isLoggedIn = status;
 }
@@ -33,4 +35,12 @@ String getCurrentDate() {
   var currDate = DateTime(date.year, date.month, date.day);
   String formatted = formatter.format(currDate);
   return formatted;
+}
+
+void setDeleteStatus() {
+  delete = true;
+}
+
+bool getDeleteStatus() {
+  return delete;
 }

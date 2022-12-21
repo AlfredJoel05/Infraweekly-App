@@ -12,14 +12,15 @@ String opprotunitiesModelToJson(List<OpportunitiesModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class OpportunitiesModel {
-  OpportunitiesModel({
-    required this.createdBy,
-    required this.createdAt,
-    required this.title,
-    required this.description,
-    required this.media,
-    required this.link,
-  });
+  OpportunitiesModel(
+      {required this.createdBy,
+      required this.createdAt,
+      required this.title,
+      required this.description,
+      required this.media,
+      required this.link,
+      required this.id
+      });
 
   String createdBy;
   List<int> createdAt;
@@ -27,16 +28,18 @@ class OpportunitiesModel {
   String description;
   String media;
   String link;
+  String id;
 
   factory OpportunitiesModel.fromJson(Map<String, dynamic> json) =>
       OpportunitiesModel(
-        createdBy: json["createdBy"],
-        createdAt: List<int>.from(json["createdAt"].map((x) => x)),
-        title: json["title"],
-        description: json["description"],
-        media: json["media"],
-        link: json["link"]
-      );
+          createdBy: json["createdBy"],
+          createdAt: List<int>.from(json["createdAt"].map((x) => x)),
+          title: json["title"],
+          description: json["description"],
+          media: json["media"],
+          link: json["link"],
+          id: json["id"].toString()
+          );
 
   Map<String, dynamic> toJson() => {
         "createdBy": createdBy,
@@ -44,6 +47,7 @@ class OpportunitiesModel {
         "title": title,
         "description": description,
         "media": media,
-        "link": link
+        "link": link,
+        "id": id.toString()
       };
 }
