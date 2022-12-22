@@ -127,14 +127,30 @@ class _FeedbackPageState extends State<FeedbackPage>
                       width: 150,
                       height: 45,
                       child: ElevatedButton(
+                        onPressed: () {
+                          _feedbackController.clear();
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey),
+                        child: const Text('Cancel',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 150,
+                      height: 45,
+                      child: ElevatedButton(
                         onPressed: getIsLoggedIn()
                             ? () {
                                 setState(() {
                                   _isLoading = !_isLoading;
                                 });
-                                submitFeedback(_feedbackController.text, finalRating);
+                                submitFeedback(
+                                    _feedbackController.text, finalRating);
                               }
-                            : () => showAlertDialogBox(context,'Login Required to submit Feedback', false),
+                            : () => showAlertDialogBox(context,
+                                'Login Required to submit Feedback', false),
                         child: _isLoading
                             ? const SizedBox(
                                 height: 25,
@@ -143,20 +159,7 @@ class _FeedbackPageState extends State<FeedbackPage>
                                     backgroundColor: Colors.white))
                             : const Text('Submit',
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 150,
-                      height: 45,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _feedbackController.clear();
-                        },
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
-                        child: const Text('Cancel',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
                     ),
                   ],

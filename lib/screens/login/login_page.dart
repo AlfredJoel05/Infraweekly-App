@@ -46,6 +46,9 @@ class _LoginPageState extends State<LoginPage> {
 
     if (response['status'] == 200) {
       setIsLoggedIn(true);
+      if (email == 'tridinfrawvu2022@gmail.com') {
+        setIsAdminLoggedIn();
+      }
       if (!mounted) return;
       showAlertDialogBox(context, 'Login Successful', true);
       Future.delayed(const Duration(seconds: 1), () {
@@ -97,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 25),
 
-                  // Email
+                  //? Email
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -125,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 25),
 
-                  // Password
+                  //? Password
                   TextFormField(
                     controller: _passwordController,
                     keyboardType: TextInputType.visiblePassword,
@@ -156,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 5),
 
-                  // Forgot Password
+                  //? Forgot Password
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -169,7 +172,6 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             );
                           },
-                          style: TextButton.styleFrom(backgroundColor: Colors.black54),
                           child: const Text(
                             'ForgotPassword?',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -178,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 25),
 
-                  // Login Button
+                  //? Login Button
                   Container(
                     alignment: Alignment.center,
                     height: 60,
@@ -214,7 +216,8 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  // Don't have an account?
+
+                  //? Don't have an account?
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -233,7 +236,6 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             );
                           },
-                          style: TextButton.styleFrom(backgroundColor: Colors.amber),
                           child: const Text(
                             'Sign Up',
                             style: TextStyle(fontWeight: FontWeight.bold),

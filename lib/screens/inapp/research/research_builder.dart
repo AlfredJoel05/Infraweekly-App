@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trid_travel/Utils/alert_dialog.dart';
 import 'package:trid_travel/blocs/research_bloc/research_bloc.dart';
+import 'package:trid_travel/constants/constants_values.dart';
 import 'package:trid_travel/models/research_model/research_model.dart';
 import 'package:trid_travel/services/api_service.dart';
 import 'package:trid_travel/utils/delete_card.dart';
@@ -102,7 +103,7 @@ Widget cardBuilder(ResearchModel singleData, BuildContext context, [bool mounted
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),
     child: GestureDetector(
-      onLongPress: () async {
+      onLongPress: getIsAdminLoggedIn() ? () async {
         var delete = await showDeletePopup(context);
         if (delete) {
           var response = await deleteNews(singleData.id);
@@ -113,7 +114,7 @@ Widget cardBuilder(ResearchModel singleData, BuildContext context, [bool mounted
             context.read<ResearchBloc>().add(ResearchRefreshEvent());
           }
         }
-      },
+      }:null,
       child: Card(
         elevation: 5.0,
         shape: RoundedRectangleBorder(

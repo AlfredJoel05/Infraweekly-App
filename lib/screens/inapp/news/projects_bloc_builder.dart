@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trid_travel/Utils/alert_dialog.dart';
 import 'package:trid_travel/blocs/projects_news_bloc/projects_news.dart';
+import 'package:trid_travel/constants/constants_values.dart';
 import 'package:trid_travel/models/news_model/projects_news_model.dart';
 import 'package:trid_travel/services/api_service.dart';
 import 'package:trid_travel/utils/delete_card.dart';
@@ -39,8 +40,7 @@ BlocBuilder<ProjectsNewsBloc, ProjectsNewsState> projectsNewsBlocBuilder() {
   );
 }
 
-Widget projectsNewsBuilder(
-    BuildContext context, List<ProjectsNewsModel> projectsNewsDataList) {
+Widget projectsNewsBuilder(BuildContext context, List<ProjectsNewsModel> projectsNewsDataList) {
   return Center(
       child: RefreshIndicator(
     triggerMode: RefreshIndicatorTriggerMode.anywhere,
@@ -103,7 +103,7 @@ Widget cardBuilder(ProjectsNewsModel singleData, BuildContext context,
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),
     child: GestureDetector(
-      onLongPress: () async {
+      onLongPress: getIsAdminLoggedIn() ? () async {
         var delete = await showDeletePopup(context);
         if (delete) {
           var response = await deleteNews(singleData.id);
@@ -114,7 +114,7 @@ Widget cardBuilder(ProjectsNewsModel singleData, BuildContext context,
             context.read<ProjectsNewsBloc>().add(ProjectsNewsRefreshEvent());
           }
         }
-      },
+      } : null,
       child: Card(
         elevation: 5.0,
         shape: RoundedRectangleBorder(

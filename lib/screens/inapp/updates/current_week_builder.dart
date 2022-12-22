@@ -5,6 +5,7 @@ import 'package:trid_travel/blocs/current_week_updates_bloc/updates_bloc.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trid_travel/constants/constants_values.dart';
 // import 'package:trid_travel/blocs/current_week_updates_bloc/updates_bloc.dart';
 import 'package:trid_travel/models/updates_model/current_week_model.dart';
 import 'package:trid_travel/services/api_service.dart';
@@ -106,7 +107,7 @@ Widget cardBuilder(CurrentWeekUpdateModel singleData, BuildContext context, [boo
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),
     child: GestureDetector(
-      onLongPress: () async {
+      onLongPress: getIsAdminLoggedIn() ? () async {
         var delete = await showDeletePopup(context);
         if (delete) {
           var response = await deleteUpdate(singleData.id);
@@ -117,7 +118,7 @@ Widget cardBuilder(CurrentWeekUpdateModel singleData, BuildContext context, [boo
             context.read<GetUpdatesBloc>().add(GetUpdatesBlocRefreshEvent());
           }
         }
-      },
+      } : null,
       child: Card(
         elevation: 5.0,
         shape: RoundedRectangleBorder(

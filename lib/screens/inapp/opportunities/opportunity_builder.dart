@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trid_travel/Utils/alert_dialog.dart';
 import 'package:trid_travel/blocs/opportunities_bloc/opportunities_bloc.dart';
+import 'package:trid_travel/constants/constants_values.dart';
 import 'package:trid_travel/models/opportunitites_model/opportunities_model.dart';
 import 'package:trid_travel/services/api_service.dart';
 import 'package:trid_travel/utils/delete_card.dart';
@@ -104,7 +105,7 @@ Widget cardBuilder(OpportunitiesModel singleData, BuildContext context,
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),
     child: GestureDetector(
-      onLongPress: () async {
+      onLongPress:getIsAdminLoggedIn() ? () async {
         var delete = await showDeletePopup(context);
         if (delete) {
           var response = await deleteNews(singleData.id);
@@ -115,7 +116,7 @@ Widget cardBuilder(OpportunitiesModel singleData, BuildContext context,
             context.read<OpportunitiesBloc>().add(OpportunitiesRefreshEvent());
           }
         }
-      },
+      }:null,
       child: Card(
         elevation: 5.0,
         shape: RoundedRectangleBorder(

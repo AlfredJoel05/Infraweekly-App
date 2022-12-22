@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trid_travel/blocs/previous_week_updates_bloc/get_previous_week_bloc.dart';
+import 'package:trid_travel/constants/constants_values.dart';
 import 'package:trid_travel/models/updates_model/previous_week_model.dart';
 import 'package:trid_travel/services/api_service.dart';
 import 'package:trid_travel/utils/alert_dialog.dart';
@@ -104,18 +105,22 @@ Widget cardBuilder(PreviousWeekModel singleData, BuildContext context,
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 10.0),
     child: GestureDetector(
-      onLongPress: () async {
-        var delete = await showDeletePopup(context);
-        if (delete) {
-          var response = await deleteUpdate(singleData.id);
-          if (response.statusCode == 200) {
-            var body = json.decode(response.body);
-            if (!mounted) return;
-            showAlertDialogBox(context, body['body'], true);
-            context.read<GetPreviousWeekBloc>().add(GetPreviousBlocRefreshEvent());
-          }
-        }
-      },
+      onLongPress: getIsAdminLoggedIn()
+          ? () async {
+              var delete = await showDeletePopup(context);
+              if (delete) {
+                var response = await deleteUpdate(singleData.id);
+                if (response.statusCode == 200) {
+                  var body = json.decode(response.body);
+                  if (!mounted) return;
+                  showAlertDialogBox(context, body['body'], true);
+                  context
+                      .read<GetPreviousWeekBloc>()
+                      .add(GetPreviousBlocRefreshEvent());
+                }
+              }
+            }
+          : null,
       child: Card(
         elevation: 5.0,
         shape: RoundedRectangleBorder(

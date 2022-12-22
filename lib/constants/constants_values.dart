@@ -44,3 +44,13 @@ void setDeleteStatus() {
 bool getDeleteStatus() {
   return delete;
 }
+
+bool isAdminLoggedIn = false;
+
+bool getIsAdminLoggedIn() {
+  return isAdminLoggedIn;
+}
+
+void setIsAdminLoggedIn() {
+  isAdminLoggedIn = true;
+}

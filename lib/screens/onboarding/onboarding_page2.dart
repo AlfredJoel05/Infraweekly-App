@@ -104,7 +104,7 @@ class OnboardPage2 extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    // Skip button
+                                    //? Skip button
                                     ElevatedButton(
                                       onPressed: () {
                                         Navigator.pop(context);
@@ -116,7 +116,6 @@ class OnboardPage2 extends StatelessWidget {
                                       },
                                       style: ElevatedButton.styleFrom(
                                           minimumSize: const Size(170, 55),
-                                          foregroundColor: Colors.white,
                                           backgroundColor:
                                               Colors.grey.shade700),
                                       child: Text(
@@ -129,7 +128,7 @@ class OnboardPage2 extends StatelessWidget {
                                       ),
                                     ),
 
-                                    // Signup button
+                                    //? Signup button
                                     ElevatedButton(
                                       onPressed: () {
                                         Navigator.pop(context);
